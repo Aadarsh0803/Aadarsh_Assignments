@@ -8,7 +8,7 @@ namespace Test2
         {
             public int BookId { get; set; }
             public string BName { get; set; }
-            public double Price { get; set; }
+            public double Price { get; set; }//99.21
             public string Author { get; set; }
             public string Publisher { get; set; }
 
@@ -32,10 +32,15 @@ namespace Test2
         public class BookDel : IBookDetails
         {
             List<Book> book = new List<Book>();
+            List<Book> BookAutPub = new List<Book>();
+            List<Book> BookAuthor = new List<Book>();
+
             public void AddBook()
             {
                 try
                 {
+                    //[bid,bname,price            ]
+                    //[]
 
                     Book b = new Book();
                     Console.Write("Enter Book Id: ");
@@ -45,6 +50,7 @@ namespace Test2
                         if (book[i].BookId == b.BookId)
                         {
                             Console.WriteLine("Book Id already Exist");
+                            //AddBook();
                             break;
                         }
                     }
@@ -89,21 +95,23 @@ namespace Test2
             }
             public void DisplayId(int id)
             {
+                bool flag = false;
                 for (int i = 0; i < book.Count; i++)
                 {
                     if (book[i].BookId == id)
                     {
                         Console.WriteLine(book[i]);
+                        flag = true;
                         break;
                     }
                 }
-                    
-                        Console.WriteLine("Book id not found");
-                    
+                if (flag == false)
+                {
+                    Console.WriteLine("Book id not found");
+                }
                 
             }
-            List<Book> BookAuthor = new List<Book>();
-
+            
             public void DisplayAuthor(string author)
             {
                 for(int i=0;i<book.Count;i++)
@@ -115,23 +123,32 @@ namespace Test2
                 }
                 foreach (Book b in BookAuthor)
                 {
-                    Console.WriteLine(b);
+                    if (BookAuthor.Count() > 0)
+                        Console.WriteLine(b);
+                    else Console.WriteLine("Invalid entry");
                 }
+                //BookAuthor = null;
             }
 
             public void DisplayName(string name)
             {
+                bool flag = true;
                 for (int i = 0; i < book.Count; i++)
                 {
                     if (book[i].BName.ToLower() == name)
                     {
                         Console.WriteLine(book[i]);
+                        flag = false;
                     }
                 }
-                        Console.WriteLine("Book Name Does not exist");
+                if (flag)
+                {
+                    Console.WriteLine("Book Name Does not exist");
+                }
+                        
                    
             }
-            List<Book> BookAutPub = new List<Book>();
+            
             public void DisplayAutPub(string author, string Publisher)
             {
                 var name = from i in book
@@ -145,6 +162,7 @@ namespace Test2
                 {
                     Console.WriteLine(b);
                 }
+                //BookAutPub = null;
                 
             }
 
