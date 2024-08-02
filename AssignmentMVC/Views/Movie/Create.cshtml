@@ -1,0 +1,29 @@
+﻿@model MovieProject.Models.Movie
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Add Movie</h1>
+
+<div class="container">
+    <form asp-action="Add" method="post">
+        <label for="MovieId">Movie ID:</label>
+        
+        <input type="text" id="MovieId" asp-for="MovieId" />
+        <br />
+        <label for="Title">Title:</label>
+        <input type="text" id="Title" asp-for="Title" />
+        <br />
+        <label for="Actor">Actor:</label>
+        <input type="text" id="Actor" asp-validation-for="Actor"  asp-for="Actor" class="text-danger" />
+        <br/>
+        <label for="Lang">Language:</label>
+        <input type="text" id="Lang" asp-for="Lang" />
+        <br/>
+        <label for="Director">Director:</label>
+        <input type="text" id="Director" asp-for="Director" />
+        <br/>
+        <input type="submit" value="Add" />
+    </form>
+</div>
